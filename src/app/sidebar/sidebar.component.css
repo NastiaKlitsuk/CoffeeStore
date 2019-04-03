@@ -1,0 +1,8 @@
+.sidebar-container {
+  width: 25vw;
+  min-height: 100vh;
+  background-color: #fafafa;
+  border-right: thin solid gray;
+  display: flex;
+  flex-direction: column;
+}

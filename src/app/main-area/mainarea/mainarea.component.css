@@ -1,5 +1,5 @@
 .main-area-container {
-  border-left: thick solid gray;
-  background-color: lightgray;
-  margin-left: 1em;
+  width: 74.9vw;
+  min-height: 100vh;
+  background-color: #f1f1f1;
 }

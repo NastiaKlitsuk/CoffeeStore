@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MAIN_MENU } from '../model/main-menu';
 
 @Component({
   selector: 'app-main-menu',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
+  public menuHeaders: string[];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    this.menuHeaders = Object.values(MAIN_MENU);
   }
 
+  ngOnInit() {}
 }
