@@ -1,45 +1,51 @@
 import { DatePipe } from '@angular/common';
 
-export function getLocaleTime() {
+enum DateTimeFormat {
+  Short = 'short',
+  Long = 'long'
+}
+export function getLocaleTime(
+  dateTimeFormat = DateTimeFormat.Short,
+  locale?: string
+) {
   const now = Date.now();
-  const pipe = new DatePipe('en-IL');
-  return pipe.transform(now, 'short');
+  const pipe = new DatePipe(locale || 'en-IL');
+  return pipe.transform(now, dateTimeFormat);
 }
 
-function getCurrentHour() {
-  const dateTime = getLocaleTime();
+function getCurrentHour(dateTime: string) {
   const time = dateTime.slice(dateTime.indexOf(',') + 1).trim();
   return parseInt(time.slice(0, time.indexOf(':')), 10);
 }
 
-function isAM() {
-  const dateTime = getLocaleTime();
+function isAM(dateTime: string) {
   return dateTime.indexOf('AM') !== -1;
 }
 
-function isPM() {
-  const dateTime = getLocaleTime();
+function isPM(dateTime: string) {
   return dateTime.indexOf('PM') !== -1;
 }
 
-export function isMorning() {
-  const hour = getCurrentHour();
-  return isAM() ? hour >= 5 && hour < 12 : false;
+export function isMorning(dateTime: string) {
+  const hour = getCurrentHour(dateTime);
+  return isAM(dateTime) ? hour >= 5 && hour < 12 : false;
 }
 
-export function isAfternoon() {
-  const hour = getCurrentHour();
-  return isPM() ? hour >= 12 && hour <= 17 : false;
+export function isAfternoon(dateTime: string) {
+  const hour = getCurrentHour(dateTime);
+  const hoursRange = (hour >= 12 && hour < 17) || (hour === 12) || (hour >= 1 && hour < 5);
+  return isPM(dateTime) ?  hoursRange : false;
 }
 
-export function isEvening() {
-  const hour = getCurrentHour();
-  return isPM() ? hour > 17 && hour <= 21 : false;
+export function isEvening(dateTime: string) {
+  const hour = getCurrentHour(dateTime);
+  const hoursRange = (hour >= 17 && hour < 21) || (hour >= 5 && hour < 9);
+  return isPM(dateTime) ? hoursRange : false;
 }
 
-export function isNigth() {
-  const hour = getCurrentHour();
-  const isBeforeMidnigth = isPM() ? hour > 21 : false;
-  const isAfterMidnigth = isAM() ? hour < 5 : false;
+export function isNigth(dateTime: string) {
+  const hour = getCurrentHour(dateTime);
+  const isBeforeMidnigth = isPM(dateTime) ? (hour >= 21) || (hour >= 9) : false;
+  const isAfterMidnigth = isAM(dateTime) ? hour < 5 : false;
   return isBeforeMidnigth || isAfterMidnigth;
 }
