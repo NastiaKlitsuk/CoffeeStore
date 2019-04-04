@@ -1,11 +1,15 @@
-.main-menu-container {
+.menu-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.main-menu-container {
+  display: flex;
+  flex-direction: row;
 }
 
 ul {
-  display: flex;
   list-style: none;
 }
 
@@ -15,3 +19,17 @@ ul > li {
   cursor: pointer;
 }
 
+.sub-menu-container {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  font-size: 1.5em;
+  font-weight: bold;
+  align-self: center;
+}
+
+.active {
+  border-bottom: thin solid green;
+}

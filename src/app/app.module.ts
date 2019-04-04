@@ -6,21 +6,26 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { MainAreaModule } from './main-area/main-area.module';
-import { WelcomemessageComponent } from './welcomemessage/welcomemessage.component';
+import { UserMessageComponent } from './usermessage/usermessage.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     MainMenuComponent,
-    WelcomemessageComponent,
+    UserMessageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MainAreaModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

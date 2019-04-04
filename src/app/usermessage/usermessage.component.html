@@ -1,0 +1,9 @@
+<div class="user-message-container">
+  <span>{{ userMessage.message }}</span>
+  <img
+    *ngIf="userMessage.imagePath"
+    [src]="userMessage.imagePath"
+    height="50px"
+    width="50px"
+  />
+</div>

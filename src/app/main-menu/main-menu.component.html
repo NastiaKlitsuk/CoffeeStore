@@ -1,5 +1,13 @@
-<nav class="main-menu-container">
-  <ul>
-    <li *ngFor="let menuHeader of menuHeaders">{{ menuHeader }}</li>
+<nav class="menu-container">
+  <ul class="main-menu-container ">
+    <li *ngFor="let menuItem of menu" (click)="menuClick(menuItem)">
+      {{ menuItem.name }}
+    </li>
+  </ul>
+
+  <ul *ngIf="isSubMenuExist" class="sub-menu-container">
+    <li *ngFor="let menu of selectedMenu.subMenu" (click)="menuClick(menu)" [class.active]="menu === selectedLeafMenu">
+      {{ menu.name }}
+    </li>
   </ul>
 </nav>
