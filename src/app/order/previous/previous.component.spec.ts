@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainareaComponent } from './mainarea.component';
+import { PreviousComponent } from './previous.component';
 
-describe('MainareaComponent', () => {
-  let component: MainareaComponent;
-  let fixture: ComponentFixture<MainareaComponent>;
+describe('PreviousComponent', () => {
+  let component: PreviousComponent;
+  let fixture: ComponentFixture<PreviousComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainareaComponent ]
+      declarations: [ PreviousComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainareaComponent);
+    fixture = TestBed.createComponent(PreviousComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,8 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ClockService } from '../services/clock/clock.service';
-import { Observable, Subscription } from 'rxjs';
-import { GlobalState } from '../store/global/global.reducer';
-import * as globalActions from '../store/global/global.actions';
+import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {
   UserMessage,
@@ -24,10 +22,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   public currentDateTimeSubscription: Subscription;
   private menuSelected: boolean;
 
-  constructor(
-    private clockServcie: ClockService,
-    private store: Store<GlobalState>
-  ) {}
+  constructor(private clockServcie: ClockService) {}
 
   ngOnInit() {
     this.currentDateTimeSubscription = this.clockServcie
@@ -37,8 +32,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   onMenuSelected(menu: Menu) {
     this.menuSelected = true;
-    this.userMessage = menu.userMessage || { message: '' };
-    this.store.dispatch(new globalActions.MenuSelected(menu.name));
+    this.userMessage = !menu.subMenu.length
+      ? menu.userMessage
+      : { message: '' };
   }
 
   setUserGoodDayMessage(dateTime: string) {

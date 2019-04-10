@@ -9,7 +9,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class MainMenuComponent {
   public menu: Menu[];
   public selectedMenu: Menu;
-  public selectedLeafMenu: Menu;
   public isSubMenuExist: boolean;
   @Output() menuSelected: EventEmitter<Menu>;
 
@@ -19,13 +18,10 @@ export class MainMenuComponent {
   }
 
   menuClick(selectedMenu: Menu) {
-    if (selectedMenu.subMenu.length || selectedMenu.userMessage) {
+    this.isSubMenuExist = selectedMenu.subMenu.length > 0;
+    if (this.isSubMenuExist || selectedMenu.userMessage) {
       this.selectedMenu = selectedMenu;
-      this.isSubMenuExist = selectedMenu.subMenu.length > 0;
+      this.menuSelected.emit(selectedMenu);
     }
-
-    this.selectedLeafMenu =
-      selectedMenu.subMenu.length === 0 ? selectedMenu : null;
-    this.menuSelected.emit(selectedMenu);
   }
 }
