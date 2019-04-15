@@ -1,3 +1,7 @@
-<p>
-  menu works!
-</p>
+<div class="menu-container scrollable">
+  <app-menucategory
+    *ngFor="let menuCategory of (menu$ | async)"
+    [menuCategory]="menuCategory"
+    (menuItemSelected)="onMenuItemSelected($event)"
+  ></app-menucategory>
+</div>

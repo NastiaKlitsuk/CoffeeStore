@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ClockService } from '../services/clock/clock.service';
 import { Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
 import {
   UserMessage,
   GoodMorningMessage,
@@ -10,7 +9,7 @@ import {
   GoodNigthMessage
 } from '../model/user-message';
 import { isMorning, isAfternoon, isEvening } from '../utils/date-time.utils';
-import { Menu } from '../model/main-menu';
+import { NavigationMenu } from '../model/navigation-menu';
 
 @Component({
   selector: 'app-sidebar',
@@ -30,11 +29,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
       .subscribe(dateTime => this.setUserGoodDayMessage(dateTime));
   }
 
-  onMenuSelected(menu: Menu) {
+  onMenuSelected(menu: NavigationMenu) {
     this.menuSelected = true;
-    this.userMessage = !menu.subMenu.length
-      ? menu.userMessage
-      : { message: '' };
+    this.userMessage = menu.userMessage;
   }
 
   setUserGoodDayMessage(dateTime: string) {

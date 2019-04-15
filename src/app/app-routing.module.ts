@@ -2,18 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: 'menu',
-    loadChildren: './order/order.module#OrderModule'
-  },
-  {
-    path: 'favorite',
-    loadChildren: './order/order.module#OrderModule'
-  },
-  {
-    path: 'previous',
-    loadChildren: './order/order.module#OrderModule'
-  },
+  { path: 'order', loadChildren: './order/order.module#OrderModule' },
   {
     path: 'cards',
     loadChildren: './cards/cards.module#CardsModule'

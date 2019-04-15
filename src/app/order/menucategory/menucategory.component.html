@@ -1,0 +1,13 @@
+<div>
+  <h1>{{ menuCategory.name }}</h1>
+  <div class="menu-category-container">
+    <div
+      *ngFor="let menuItem of menuCategory.menuItems"
+      class="menu-item-container"
+      (click)="onMenuItemSelected(menuItem.name)"
+    >
+      <img [src]="menuItem.image" height="50" width="60" />
+      <span>{{ menuItem.name }}</span>
+    </div>
+  </div>
+</div>

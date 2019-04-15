@@ -1,4 +1,7 @@
 <header class="sidebar-container">
-  <app-main-menu (menuSelected)="onMenuSelected($event)"></app-main-menu>
-  <app-usermessage [userMessage]="userMessage"></app-usermessage>
+  <app-navigation-menu (mainMenuSelected)="onMenuSelected($event)"></app-navigation-menu>
+  <app-usermessage
+    *ngIf="userMessage"
+    [userMessage]="userMessage"
+  ></app-usermessage>
 </header>

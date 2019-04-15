@@ -1,0 +1,20 @@
+.menu-category-container {
+  display: grid;
+  grid-template-columns: repeat(2, 35.7vw);
+  grid-gap: 1rem;
+  font-weight: bold;
+}
+
+.menu-item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1em;
+  margin: 5px;
+}
+
+.menu-item-container > img,
+.menu-item-container > span {
+  margin: 5px;
+}
+

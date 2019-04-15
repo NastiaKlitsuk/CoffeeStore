@@ -1,0 +1,22 @@
+<nav class="menu-container">
+  <ul class="main-menu-container ">
+    <li
+      *ngFor="let menuItem of menu"
+      (click)="onMainMenuSelected(menuItem)"
+      [routerLink]="[menuItem.navigateTo]"
+    >
+      {{ menuItem.name }}
+    </li>
+  </ul>
+
+  <ul *ngIf="isSubMenuExist" class="sub-menu-container">
+    <li
+      *ngFor="let menuItem of selectedMainMenu.subMenu"
+      (click)="onSubMenuSelected(menuItem)"
+      [class.active]="menuItem === selectedSubMenu"
+      [routerLink]="[menuItem.navigateTo]"
+    >
+      {{ menuItem.name }}
+    </li>
+  </ul>
+</nav>
